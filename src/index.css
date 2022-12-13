@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +9,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  height: 100%;
+}
+
+
+/* NAVBAR */
+
+
+.burger-menu::before,
+.burger-menu::after {
+  content: '';
+  position: absolute;
+  border: 2px solid lightgrey;
+  transition: all .5 ease-in-out;
+}
+
+.burger-menu::before {
+  transform: translate(-16px, -12px);
+}
+.burger-menu::after {
+  transform: translate(-16px, 8px);
+}
+
+/*HERO SECTION*/
