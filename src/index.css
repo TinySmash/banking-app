@@ -22,6 +22,14 @@ code {
 }
 
 
+/* FREQUENTLY USED */
+
+.center-h {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
 /* NAVBAR */
 
 
@@ -41,3 +49,4 @@ code {
 }
 
 /*HERO SECTION*/
+
