@@ -29,20 +29,20 @@ function Hero() {
           <h1 className=" font-bold text-2xl text-red-500 sm:text-4xl">100% tax free service (We don't take fees)</h1>
         </div>
       </section>
-      <section className='w-full h-screen block p-8 md:justify-around'>
+      <section className='w-full h-h-auto block p-8 bg-slate-100 md:justify-around '>
         <div className='w-full h-auto block md:flex md:pr-24'>
           <img src="bank.png" alt="" className='w-2/3 m-auto md:w-2/5 md:mt-0 lg:w-1/3 md:ml-0'/>
-          <p className='font-bold md:w-2/5 md:mt-16 md:text-2xl lg:text-3xl lg:mt-28'>Send and receive cash to anywhere in the world within less than 5min with <span className='bg-red-500 text-slate-100 rounded'>MonoCash</span>,
+          <p className='font-bold md:w-2/5 md:mt-16 md:text-2xl lg:text-3xl lg:mt-24'>Send and receive cash to anywhere in the world within less than 5min with <span className='bg-red-500 text-slate-100 rounded'>MonoCash</span>,
           with +24 currecies supported including cryptocurrencies and NFT's. your wallet is in your pocket.</p>
-      </div>
-        <div className='block w-full mt-10 h-auto m-auto border-2 md:flex md:justify-evenly md:items-center md:mt-16'>
+        </div>
+        <div className='block w-full mt-10 h-auto m-auto md:flex md:justify-evenly md:items-center md:mt-16'>
         <button className='m-auto bg-purple-500 w-full rounded-xl pt-3 pb-3 mt-3 text-xl font-bold text-slate-100 md:w-2/5'>Profile</button>
         <br />
         <button className='m-auto bg-red-500 w-full rounded-xl pt-3 pb-3 mt-3 text-xl font-bold text-slate-100 md:w-2/5'>Wallet</button> 
         </div>
       </section>
       <section className='w-full h-auto p-10 bg-gray-900 flex justify-center'>
-        <div className="border-t-2 border-gray-200 w-full flex justify-between md:w-2/3">
+        <div className="border-t-2 w-full flex justify-between md:w-2/3">
           <h3 className='text-slate-100'>MonoCash© 2021</h3>
           <h4 className='text-slate-100'>All rights reserved</h4>
         </div>
