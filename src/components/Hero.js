@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Hero() {
+function Hero() {
   return (
     <div className="">
       <section className='Hero w-full h-screen block md:flex'>
@@ -10,7 +11,7 @@ export default function Hero() {
             <h2 className="subtitle text-2xl text-gray-800">Most popular trading & banking platform in your hands</h2>
           </div>
       </section>
-      <section className='h-auto block pb-4 bg-red-500 p-10 md:p-26 md:flex md:flex-wrap lg:pt-16 lg:pb-10'>
+      <section className='h-auto block bg-red-500 p-10 md:p-26 md:flex md:flex-wrap lg:pt-16 lg:pb-10 lg:h-screen'>
         <div className='w-full h-min bg-slate-100 rounded-xl flex justify-evenly items-center lg:w-9/2 p-4 ml-auto mr-auto mb-8'>
           <img src="cash.png" alt="" className='w-36 sm:w-44'/>
           <h1 className=" font-bold text-2xl text-red-500 sm:text-4xl">Fast and secure online transfer</h1>
@@ -27,8 +28,27 @@ export default function Hero() {
           <img src="tax.png" alt="" className='w-36 sm:w-44'/>
           <h1 className=" font-bold text-2xl text-red-500 sm:text-4xl">100% tax free service (We don't take fees)</h1>
         </div>
-
+      </section>
+      <section className='w-full h-screen block p-8 md:justify-around'>
+        <div className='w-full h-auto block md:flex md:pr-24'>
+          <img src="bank.png" alt="" className='w-2/3 m-auto md:w-2/5 md:mt-0 lg:w-1/3 md:ml-0'/>
+          <p className='font-bold md:w-2/5 md:mt-16 md:text-2xl lg:text-3xl lg:mt-28'>Send and receive cash to anywhere in the world within less than 5min with <span className='bg-red-500 text-slate-100 rounded'>MonoCash</span>,
+          with +24 currecies supported including cryptocurrencies and NFT's. your wallet is in your pocket.</p>
+      </div>
+        <div className='block w-full mt-10 h-auto m-auto border-2 md:flex md:justify-evenly md:items-center md:mt-16'>
+        <button className='m-auto bg-purple-500 w-full rounded-xl pt-3 pb-3 mt-3 text-xl font-bold text-slate-100 md:w-2/5'>Profile</button>
+        <br />
+        <button className='m-auto bg-red-500 w-full rounded-xl pt-3 pb-3 mt-3 text-xl font-bold text-slate-100 md:w-2/5'>Wallet</button> 
+        </div>
+      </section>
+      <section className='w-full h-auto p-10 bg-gray-900 flex justify-center'>
+        <div className="border-t-2 border-gray-200 w-full flex justify-between md:w-2/3">
+          <h3 className='text-slate-100'>MonoCash© 2021</h3>
+          <h4 className='text-slate-100'>All rights reserved</h4>
+        </div>
       </section>
     </div>
   )
 }
+
+export default Hero;

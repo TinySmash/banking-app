@@ -7,8 +7,8 @@ export default function Navbar() {
         <nav className='hidden sm:flex w-5/12 '>
             <ul className='w-full flex justify-between'>
                 <li className='no-underline text-slate-100 hover:text-slate-400'><a href="">Home</a></li>
-                <li className='no-underline text-slate-100 hover:text-slate-400'><a href="">Market</a></li>
                 <li className='no-underline text-slate-100 hover:text-slate-400'><a href="">Profile</a></li>
+                <li className='no-underline text-slate-100 hover:text-slate-400'><a href="">Wallet</a></li>
             </ul>
         </nav>
         <button className='flex sm:hidden w-10 h-10 border-2 border-slate-100 border-radius-5 rounded items-center justify-center'>
