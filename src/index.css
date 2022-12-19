@@ -47,5 +47,34 @@ code {
   transform: translate(-16px, 8px);
 }
 
+@keyframes BurgerAnimation {
+  from {
+    height: 0;
+    display: block;
+  }to {
+    height: 7rem;
+    display: block;
+  }
+}
+
+@keyframes BurgerAnimation {
+  from {
+    height: 7rem;
+  }to {
+    height: 0rem;
+    display: none;
+  }
+}
+
+.burger-opened-menu {
+  animation: BurgerAnimation;
+  animation-duration: 0.5s;
+}
+
+.burger-closed-menu {
+  animation: closeBurgerAnimation;
+  animation-duration: 0.5s;
+}
+
 /*HERO SECTION*/
 
