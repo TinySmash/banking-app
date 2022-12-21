@@ -1,4 +1,4 @@
-const getUserInfo = () => {
+export const getUserInfo = () => {
     return {
         type: 'GET_USER_INFO',
         payload: null

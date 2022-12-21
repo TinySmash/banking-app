@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react'
+import React, {useEffect , useState} from 'react'
 import { useNavigate } from 'react-router';
 import { connect } from 'react-redux';
-import {getUserInfo} from '../actions/userActions'
+import { getUserInfo } from '../actions/userActions'
 
 function Navbar(props) {
 
@@ -11,6 +11,7 @@ function Navbar(props) {
     const menuList = document.querySelector('.menu-list');
     if(menuOpened == false) {
       menu.classList.remove('burger-closed-menu');
+      menu.classList.remove('hidden');
       menu.classList.add('block');
       menu.classList.add('burger-opened-menu')
       menuList.classList.remove('menu-list-closed')
@@ -28,11 +29,17 @@ function Navbar(props) {
   //   NAVIGATION SYSTEM
   
   const navigate = useNavigate();
-  const getUserInfo = props;
+  const { getUserInfo } = props;
+  const [userState, setUserState] = useState(null);
 
   useEffect(() => {
     getUserInfo();
-  },[])
+    if(props?.user?.isLoggedIn == true) {
+      setUserState('profile');
+    } else {
+      setUserState('sign-in');
+    }
+  },[getUserInfo])
 
   return (
     <header className='flex fixed h-12 w-full p-8 sm:pr-16 bg-red-500 justify-between items-center z-50'>
@@ -47,10 +54,10 @@ function Navbar(props) {
         <button className='flex sm:hidden w-10 h-10 border-2 border-slate-100 border-radius-5 rounded items-center justify-center' onClick={openMenu}>
             <div className="burger-menu w-8 h-1 before:w-8 before:h-1 before:border-slate-100 before:rounded-md after:rounded-md after:border-slate-100 after:w-8 after:h-1 border-2 border-slate-100 rounded-md"></div>
         </button>
-        <div className='burger-options-menu burger-closed-menu sm:hidden absolute right-0 top-16 w-28 h-28 border-2 border-red-500 rounded-b-md bg-red-500'>
+        <div className='burger-options-menu hidden sm:hidden absolute right-0 top-16 w-28 h-28 border-2 border-red-500 rounded-b-md bg-red-500'>
           <ul className='menu-list menu-list-closed'>
             <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2'><a href="" onClick={() => navigate("/")}>Home</a></li>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2'><a href="" onClick={() => navigate("/profile")}>Profile</a></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2'><a href="" onClick={() => navigate(`/${userState}`)}>Profile</a></li>
             <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2 '><a href="" onClick={() => navigate("/wallet")}>Wallet</a></li>
           </ul>
         </div>
