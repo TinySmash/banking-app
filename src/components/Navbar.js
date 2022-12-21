@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useNavigate } from 'react-router';
+import { connect } from 'react-redux';
+import {getUserInfo} from '../actions/userActions'
 
-export default function Navbar() {
+function Navbar(props) {
 
   let menuOpened = false;
   function openMenu() {
@@ -22,6 +25,15 @@ export default function Navbar() {
     }
   }
 
+  //   NAVIGATION SYSTEM
+  
+  const navigate = useNavigate();
+  const getUserInfo = props;
+
+  useEffect(() => {
+    getUserInfo();
+  },[])
+
   return (
     <header className='flex fixed h-12 w-full p-8 sm:pr-16 bg-red-500 justify-between items-center z-50'>
         <h1 className="title text-3xl font-bold text-slate-100">MonoCash</h1>
@@ -37,11 +49,19 @@ export default function Navbar() {
         </button>
         <div className='burger-options-menu burger-closed-menu sm:hidden absolute right-0 top-16 w-28 h-28 border-2 border-red-500 rounded-b-md bg-red-500'>
           <ul className='menu-list menu-list-closed'>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2'><a href="">Home</a></li>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2'><a href="">Profile</a></li>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2 '><a href="">Wallet</a></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2'><a href="" onClick={() => navigate("/")}>Home</a></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2'><a href="" onClick={() => navigate("/profile")}>Profile</a></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-7 mt-2 '><a href="" onClick={() => navigate("/wallet")}>Wallet</a></li>
           </ul>
         </div>
     </header>
   )
 }
+
+const mapUserStateToProps = (state) => {
+  return {
+    user: state.user.user
+  }
+}
+
+export default connect(mapUserStateToProps, {getUserInfo})(Navbar)
