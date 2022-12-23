@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import eye from './images/eye.png'
 import eyeOff from './images/eye-off.png'
 import Google from './images/google.png'
+import manSitting from './images/man-sitting.png'
 
 class SignIn extends Component {
   render() {
+
+    // PASSWORD INPUT 
 
     var showPassword = false;
     var eyeIcon = eye;
@@ -27,15 +30,35 @@ class SignIn extends Component {
       eyeImg.setAttribute('src', eyeIcon)
     }
 
+    // VALIDATION SYSTEM
+    
+    const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const passwordPattern = /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+    const usernamePattern = /^[a-zA-Z0-9_-]{3,16}$/;
+    const usernameInput = document.querySelector('username-input');
+    const emailInput = document.querySelector('email-input');
+    const passwordInput = document.querySelector('pasword-input');
+
+
+    const signIn = (e) => {
+      e?.preventDefault();
+      if(usernameInput?.value?.match(usernamePattern) == true) {
+        console.log("good username")
+      }else{
+        console.log("bad username")
+      }
+    }
+
     return (
-      <div className='block w-full h-screen'>
-        <div className='w-3/4 h-124 block border-2 border-slate-500 m-auto mt-20 rounded-3xl p-8 px-10'>
+      <div className='block w-full h-screen md:flex md:justify-between md:items-center'>
+        <img src={manSitting} alt="" className='w-1/3 max-w-sm hidden md:flex mt-16'/>
+        <div className='w-3/4 max-w-sm h-124 relative block border-2 border-slate-500 m-auto mt-24 rounded-3xl p-6 px-9 md:right-0'>
           <h1 className='relative w-32 m-auto text-3xl font-mono font-bold '>Sign-In</h1>
           <div className='inputs relative block w-full h-92 mt-5'>
             <form className='relative block w-full h-auto'>
               <label for="username" className='w-auto font-bold ml-5'>username</label>
               <br />
-              <input type="text" className='w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
+              <input type="text" className='username-input w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
             </form>
             <form className='relative block w-full h-auto mt-5'>
               <label for="E-mail" className='w-auto font-bold ml-5'>E-mail</label>
@@ -43,7 +66,7 @@ class SignIn extends Component {
               <input type="text" className='w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
             </form>
             <form className='relative block w-full h-auto mt-5'>
-              <label for="password" className='w-auto font-bold ml-5'>password</label>
+              <label for="password" className='email-input w-auto font-bold ml-5'>password</label>
               <br />
               <div className='flex justify-between border-2 border-slate-500 rounded-xl p-0 pr-1'>
                 <input type="password" className='password-input w-5/6 h-7 bg-transparent rounded-xl pl-3 focus:outline-none'/>
@@ -62,8 +85,8 @@ class SignIn extends Component {
             </span>
           </div>
 
-          <button className='border-2 border-red-500 w-4/5 ml-tenth mt-2 rounded-lg bg-red-500 text-slate-100 font-bold py-1'>Sign In</button>
-          <button className='flex relative w-full justify-between border-2 border-slate-500 rounded-xl p-0 pr-1 items-center mt-8'>
+          <button className='border-2 border-red-500 w-4/5 ml-tenth mt-2 rounded-lg bg-red-500 text-slate-100 font-bold py-1' onClick={(e) => {signIn() }}>Sign In</button>
+          <button className='flex relative w-full justify-between border-2 border-slate-500 rounded-xl p-0 pr-1 items-center mt-4'>
                 <h3 className='px-4 font-semibold'>Login with Google</h3>
                   <img src={Google} alt="" className='w-8 h-8 mr-4 '/>
           </button>
