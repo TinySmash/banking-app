@@ -5,6 +5,9 @@ import Google from './images/google.png'
 import manSitting from './images/man-sitting.png'
 import { connect } from 'react-redux';
 import { storeUserInfo } from '../actions/userActions'
+import { Navigate } from 'react-router'
+
+
 
 
 class SignIn extends Component {
@@ -18,7 +21,12 @@ class SignIn extends Component {
     }
   }
 
+
+
+   
+
   render() {
+
 
     // PASSWORD INPUT 
 
@@ -53,21 +61,31 @@ class SignIn extends Component {
 
     const getInputToState = (e, inputField) => {
       e?.preventDefault();
+      usernameInputBorder?.classList.add('border-slate-500');
+      usernameInputBorder?.classList.remove('border-red-600');
+      emailInputBorder?.classList.add('border-slate-500');
+      emailInputBorder?.classList.remove('border-red-600');
+      passwordInputBorder?.classList.add('border-slate-500');
+      passwordInputBorder?.classList.remove('border-red-600');
+      allErr.forEach((e) => {
+        e?.classList?.add('hidden');
+      })
       switch(inputField){
         case 'username':
           this.setState({...user.username = e.target.value})
           break
-        case 'email':
-          this.setState({...user.email = e.target.value})
-          break
-        case 'password':
-          this.setState({...user.password = e.target.value})
-          break
-        default :
-          return null
-      }
+          case 'email':
+            this.setState({...user.email = e.target.value})
+            break
+            case 'password':
+              this.setState({...user.password = e.target.value})
+              break
+              default :
+              return null
+            }
     }
 
+    const allErr = document.querySelectorAll('.err-msg');
     const usernameErrMsg = document.querySelector('.username-err');
     const emailErrMsg = document.querySelector('.email-err');
     const passwordErrMsg = document.querySelector('.password-err');
@@ -80,22 +98,22 @@ class SignIn extends Component {
       if(usernamePattern?.test(this.state.user.username) && emailPattern?.test(this.state.user.email) && passwordPattern?.test(this.state.user.password)) {
         this.setState({...user.isLoggedIn = true})
         storeUserInfo(user);
-        
+        return <Navigate to="/dashboard" replace={true} />
       }
       if(usernamePattern?.test(this.state.user.username) == false){
-        usernameErrMsg.innerText = 'unvalid username';
-        usernameInputBorder.classList.remove('border-slate-500');
-        usernameInputBorder.classList.add('border-red-600');
+        usernameErrMsg?.classList.remove('hidden')
+        usernameInputBorder?.classList.remove('border-slate-500');
+        usernameInputBorder?.classList.add('border-red-600');
       }
       if(emailPattern?.test(this.state.user.email) == false){
-        emailErrMsg.innerText = 'unvalid email';
-        emailInputBorder.classList.remove('border-slate-500');
-        emailInputBorder.classList.add('border-red-600');
+        emailErrMsg?.classList.remove('hidden')
+        emailInputBorder?.classList.remove('border-slate-500');
+        emailInputBorder?.classList.add('border-red-600');
       }
       if(passwordPattern?.test(this.state.user.password) == false){
-        passwordErrMsg.innerText = 'unvalid password';
-        passwordInputBorder.classList.remove('border-slate-500');
-        passwordInputBorder.classList.add('border-red-600');
+        passwordErrMsg?.classList.remove('hidden')
+        passwordInputBorder?.classList.remove('border-slate-500');
+        passwordInputBorder?.classList.add('border-red-600');
       }
     }
 
@@ -109,13 +127,13 @@ class SignIn extends Component {
               <label for="username" className='w-auto font-bold ml-5'>username</label>
               <br />
               <input type="text" onChange={(e) => { getInputToState(e, 'username') }} className='username-input-border username-input w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
-              <h6 className='username-err flex absolute p-0 ml-4 text-red-600 font-semibold'></h6>
+              <h6 className='err-msg username-err hidden absolute p-0 ml-4 text-red-600 font-semibold'>unvalid username</h6>
             </form>
             <form className='relative block w-full h-auto mt-5'>
               <label for="E-mail" className='w-auto font-bold ml-5'>E-mail</label>
               <br />
               <input type="text" onChange={(e) => { getInputToState(e, 'email') }} className='email-input-border w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
-              <h6 className='email-err flex absolute p-0 ml-4 text-red-600 font-semibold'></h6>
+              <h6 className='err-msg email-err hidden absolute p-0 ml-4 text-red-600 font-semibold'>invalid e-mail</h6>
             </form>
             <form className='relative block w-full h-auto mt-5'>
               <label for="password" className='email-input w-auto font-bold ml-5'>password</label>
@@ -126,7 +144,7 @@ class SignIn extends Component {
                   <img src={eyeIcon} alt="" className='eye-img'/>
                 </button>
               </div>
-              <h6 className='password-err flex absolute p-0 ml-4 text-red-600 font-semibold'></h6>
+              <h6 className='err-msg password-err hidden absolute p-0 ml-4 text-red-600 font-semibold'>invalid password</h6>
             </form>
           </div>
 
