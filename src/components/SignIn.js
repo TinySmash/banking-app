@@ -5,6 +5,19 @@ import Google from './images/google.png'
 import manSitting from './images/man-sitting.png'
 
 class SignIn extends Component {
+
+  state = {
+    user : {
+      username : '',
+      email : '',
+      password : ''
+    }
+  }
+
+  componentDidUpdate(){
+    console.log(this.state.user)
+  }
+
   render() {
 
     // PASSWORD INPUT 
@@ -35,17 +48,32 @@ class SignIn extends Component {
     const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const passwordPattern = /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
     const usernamePattern = /^[a-zA-Z0-9_-]{3,16}$/;
-    const usernameInput = document.querySelector('username-input');
-    const emailInput = document.querySelector('email-input');
-    const passwordInput = document.querySelector('pasword-input');
+    const {user} = this.state ;
 
 
-    const signIn = (e) => {
+    const getInputToState = (e, inputField) => {
       e?.preventDefault();
-      if(usernameInput?.value?.match(usernamePattern) == true) {
-        console.log("good username")
-      }else{
-        console.log("bad username")
+      switch(inputField){
+        case 'username':
+          this.setState(prevState => {
+            let username = Object.assign({}, prevState.user.username)
+            username = e.target.value;
+            return {user};
+          })
+          case 'email':
+            this.setState(prevState => {
+              let user = Object.assign({}, prevState.user)
+              user.email = e.target.value;
+              return {user};
+            })
+          case 'password':
+            this.setState(prevState => {
+              let user = Object.assign({}, prevState.user)
+              user.password = e.target.value;
+              return {user};
+            })
+          default :
+            return null
       }
     }
 
@@ -58,19 +86,19 @@ class SignIn extends Component {
             <form className='relative block w-full h-auto'>
               <label for="username" className='w-auto font-bold ml-5'>username</label>
               <br />
-              <input type="text" className='username-input w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
+              <input type="text" onChange={(e) => { getInputToState(e, 'username') }} className='username-input w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
             </form>
             <form className='relative block w-full h-auto mt-5'>
               <label for="E-mail" className='w-auto font-bold ml-5'>E-mail</label>
               <br />
-              <input type="text" className='w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
+              <input type="text" onChange={(e) => { getInputToState(e, 'email') }} className='w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
             </form>
             <form className='relative block w-full h-auto mt-5'>
               <label for="password" className='email-input w-auto font-bold ml-5'>password</label>
               <br />
               <div className='flex justify-between border-2 border-slate-500 rounded-xl p-0 pr-1'>
-                <input type="password" className='password-input w-5/6 h-7 bg-transparent rounded-xl pl-3 focus:outline-none'/>
-                <button onClick={(e) => displayPassword(e) } alt=""  className='relative w-7 h-7 cursor-pointer'>
+                <input type="password" onChange={(e) => { getInputToState(e, 'password') }} className='password-input w-5/6 h-7 bg-transparent rounded-xl pl-3 focus:outline-none'/>
+                <button onClick={(e) => displayPassword(e) } alt=""  className='relative w-7 h-7 cursor-pointer focus:outline-none'>
                   <img src={eyeIcon} alt="" className='eye-img'/>
                 </button>
               </div>
@@ -85,7 +113,7 @@ class SignIn extends Component {
             </span>
           </div>
 
-          <button className='border-2 border-red-500 w-4/5 ml-tenth mt-2 rounded-lg bg-red-500 text-slate-100 font-bold py-1' onClick={(e) => {signIn() }}>Sign In</button>
+          <button className='border-2 border-red-500 w-4/5 ml-tenth mt-2 rounded-lg bg-red-500 text-slate-100 font-bold py-1' >Sign In</button>
           <button className='flex relative w-full justify-between border-2 border-slate-500 rounded-xl p-0 pr-1 items-center mt-4'>
                 <h3 className='px-4 font-semibold'>Login with Google</h3>
                   <img src={Google} alt="" className='w-8 h-8 mr-4 '/>
