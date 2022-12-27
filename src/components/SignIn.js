@@ -3,19 +3,19 @@ import eye from './images/eye.png'
 import eyeOff from './images/eye-off.png'
 import Google from './images/google.png'
 import manSitting from './images/man-sitting.png'
+import { connect } from 'react-redux';
+import { storeUserInfo } from '../actions/userActions'
+
 
 class SignIn extends Component {
 
   state = {
     user : {
+      isLoggedIn: false,
       username : '',
       email : '',
       password : ''
     }
-  }
-
-  componentDidUpdate(){
-    console.log(this.state.user)
   }
 
   render() {
@@ -48,36 +48,55 @@ class SignIn extends Component {
     const passwordPattern = /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
     const usernamePattern = /^[a-zA-Z0-9_-]{3,16}$/;
     const {user} = this.state ;
+    const { storeUserInfo } = this.props;
 
 
     const getInputToState = (e, inputField) => {
       e?.preventDefault();
       switch(inputField){
         case 'username':
-          this.setState(prevState => {
-            let user = {...prevState.user}
-            user.username = e.target.value;
-            return {user};
-          })
-          case 'email':
-            this.setState(prevState => {
-              let user = {...prevState.user}
-              user.email = e.target.value;
-              return {user};
-            })
-          case 'password':
-            this.setState(prevState => {
-              let user = {...prevState.user}
-              user.password = e.target.value;
-              return {user};
-            })
-          default :
-            return null
+          this.setState({...user.username = e.target.value})
+          break
+        case 'email':
+          this.setState({...user.email = e.target.value})
+          break
+        case 'password':
+          this.setState({...user.password = e.target.value})
+          break
+        default :
+          return null
       }
     }
 
+    const usernameErrMsg = document.querySelector('.username-err');
+    const emailErrMsg = document.querySelector('.email-err');
+    const passwordErrMsg = document.querySelector('.password-err');
+    const usernameInputBorder = document.querySelector('.username-input-border');
+    const emailInputBorder = document.querySelector('.email-input-border');
+    const passwordInputBorder = document.querySelector('.password-input-border');
+
     const SignIn = (e) => {
       e?.preventDefault()
+      if(usernamePattern?.test(this.state.user.username) && emailPattern?.test(this.state.user.email) && passwordPattern?.test(this.state.user.password)) {
+        this.setState({...user.isLoggedIn = true})
+        storeUserInfo(user);
+        
+      }
+      if(usernamePattern?.test(this.state.user.username) == false){
+        usernameErrMsg.innerText = 'unvalid username';
+        usernameInputBorder.classList.remove('border-slate-500');
+        usernameInputBorder.classList.add('border-red-600');
+      }
+      if(emailPattern?.test(this.state.user.email) == false){
+        emailErrMsg.innerText = 'unvalid email';
+        emailInputBorder.classList.remove('border-slate-500');
+        emailInputBorder.classList.add('border-red-600');
+      }
+      if(passwordPattern?.test(this.state.user.password) == false){
+        passwordErrMsg.innerText = 'unvalid password';
+        passwordInputBorder.classList.remove('border-slate-500');
+        passwordInputBorder.classList.add('border-red-600');
+      }
     }
 
     return (
@@ -89,26 +108,29 @@ class SignIn extends Component {
             <form className='relative block w-full h-auto'>
               <label for="username" className='w-auto font-bold ml-5'>username</label>
               <br />
-              <input type="text" onChange={(e) => { getInputToState(e, 'username') }} className='username-input w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
+              <input type="text" onChange={(e) => { getInputToState(e, 'username') }} className='username-input-border username-input w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
+              <h6 className='username-err flex absolute p-0 ml-4 text-red-600 font-semibold'></h6>
             </form>
             <form className='relative block w-full h-auto mt-5'>
               <label for="E-mail" className='w-auto font-bold ml-5'>E-mail</label>
               <br />
-              <input type="text" onChange={(e) => { getInputToState(e, 'email') }} className='w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
+              <input type="text" onChange={(e) => { getInputToState(e, 'email') }} className='email-input-border w-full h-8 bg-transparent border-2 border-slate-500 rounded-xl pl-3 focus:outline-none'/>
+              <h6 className='email-err flex absolute p-0 ml-4 text-red-600 font-semibold'></h6>
             </form>
             <form className='relative block w-full h-auto mt-5'>
               <label for="password" className='email-input w-auto font-bold ml-5'>password</label>
               <br />
-              <div className='flex justify-between border-2 border-slate-500 rounded-xl p-0 pr-1'>
+              <div className='password-input-border flex justify-between border-2 border-slate-500 rounded-xl p-0 pr-1'>
                 <input type="password" onChange={(e) => { getInputToState(e, 'password') }} className='password-input w-5/6 h-7 bg-transparent rounded-xl pl-3 focus:outline-none'/>
                 <button onClick={(e) => displayPassword(e) } alt=""  className='relative w-7 h-7 cursor-pointer focus:outline-none'>
                   <img src={eyeIcon} alt="" className='eye-img'/>
                 </button>
               </div>
+              <h6 className='password-err flex absolute p-0 ml-4 text-red-600 font-semibold'></h6>
             </form>
           </div>
 
-          <div className="w-full block mt-3 px-2">
+          <div className="w-full block mt-7 px-2">
             <a href="" className='text-sm text-purple-800 underline'>Forgot password ?</a>
             <span className='flex w-full items-center mt-1 mx-auto'>
               <h4 className='text-sm mr-2'>Already have an account?</h4>
@@ -116,7 +138,7 @@ class SignIn extends Component {
             </span>
           </div>
 
-          <button className='border-2 border-red-500 w-4/5 ml-tenth mt-2 rounded-lg bg-red-500 text-slate-100 font-bold py-1' >Sign In</button>
+          <button className='border-2 border-red-500 w-4/5 ml-tenth mt-2 rounded-lg bg-red-500 text-slate-100 font-bold py-1' onClick={(e) => SignIn(e)}>Sign In</button>
           <button className='flex relative w-full justify-between border-2 border-slate-500 rounded-xl p-0 pr-1 items-center mt-4'>
                 <h3 className='px-4 font-semibold'>Login with Google</h3>
                   <img src={Google} alt="" className='w-8 h-8 mr-4 '/>
@@ -128,4 +150,11 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapUserStateToProps = (state) => {
+  return {
+    user: state.user.user
+  }
+}
+
+
+export default connect(mapUserStateToProps, { storeUserInfo })(SignIn);

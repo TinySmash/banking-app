@@ -4,3 +4,10 @@ export const getUserInfo = () => {
         payload: null
     }
 }
+
+export const storeUserInfo = (user) => {
+    return {
+        type: 'STORE_USER_INFO',
+        payload: user
+    }
+}
