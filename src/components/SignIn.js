@@ -29,7 +29,6 @@ class SignIn extends Component {
       e.preventDefault();
       const passwordInput = document.querySelector('.password-input');
       const eyeImg = document.querySelector('.eye-img');
-      console.log("Change eye")
       if(showPassword == false) {
         eyeIcon = eyeOff;
         showPassword = true;
@@ -56,25 +55,29 @@ class SignIn extends Component {
       switch(inputField){
         case 'username':
           this.setState(prevState => {
-            let username = Object.assign({}, prevState.user.username)
-            username = e.target.value;
+            let user = {...prevState.user}
+            user.username = e.target.value;
             return {user};
           })
           case 'email':
             this.setState(prevState => {
-              let user = Object.assign({}, prevState.user)
+              let user = {...prevState.user}
               user.email = e.target.value;
               return {user};
             })
           case 'password':
             this.setState(prevState => {
-              let user = Object.assign({}, prevState.user)
+              let user = {...prevState.user}
               user.password = e.target.value;
               return {user};
             })
           default :
             return null
       }
+    }
+
+    const SignIn = (e) => {
+      e?.preventDefault()
     }
 
     return (
