@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import store from './store';
 import { Provider } from 'react-redux';
 import SignIn from './components/SignIn';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Hero/>}></Route>
             <Route exact path='/sign-in' element={<SignIn/>}></Route>
+            <Route exact path='/dashboard' element={<Dashboard/>}></Route>
           </Routes>
 
         </div>
