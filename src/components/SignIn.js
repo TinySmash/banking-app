@@ -98,7 +98,7 @@ class SignIn extends Component {
       if(usernamePattern?.test(this.state.user.username) && emailPattern?.test(this.state.user.email) && passwordPattern?.test(this.state.user.password)) {
         this.setState({...user.isLoggedIn = true})
         storeUserInfo(user);
-        return <Navigate to="/dashboard" replace={true} />
+        
       }
       if(usernamePattern?.test(this.state.user.username) == false){
         usernameErrMsg?.classList.remove('hidden')
@@ -119,8 +119,11 @@ class SignIn extends Component {
 
     return (
       <div className='block w-full h-screen md:flex md:justify-between md:items-center'>
+        <div className='sign-msg block fixed m-auto center-h mt-40 md:mt-12 w-4/5 max-w-md h-64 border-2 border-slate-700 rounded-xl bg-neutral-200 z-50'>
+          <h1 className='relative flex w-auto text-2xl text-emerald-500 mx-auto mt-8 font-semibold'>You Signed In successfully</h1>
+        </div>
         <img src={manSitting} alt="" className='w-1/3 max-w-sm hidden md:flex mt-16'/>
-        <div className='w-3/4 max-w-sm h-124 relative block border-2 border-slate-500 m-auto mt-24 rounded-3xl p-6 px-9 md:right-0'>
+        <div className='form w-3/4 max-w-sm h-124 relative block border-2 border-slate-500 m-auto mt-24 rounded-3xl p-6 px-9 md:right-0'>
           <h1 className='relative w-32 m-auto text-3xl font-mono font-bold '>Sign-In</h1>
           <div className='inputs relative block w-full h-92 mt-5'>
             <form className='relative block w-full h-auto'>
