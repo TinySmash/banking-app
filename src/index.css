@@ -52,14 +52,14 @@ code {
     height: 0;
     display: block;
   }to {
-    height: 7rem;
+    height: 8rem;
     display: block;
   }
 }
 
 @keyframes closeBurgerAnimation {
   0% {
-    height: 7rem;
+    height: 8rem;
     display: block;
   }
   99% {
