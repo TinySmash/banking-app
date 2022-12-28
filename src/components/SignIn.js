@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import eye from './images/eye.png'
 import eyeOff from './images/eye-off.png'
 import Google from './images/google.png'
+import Xicon from './images/x.png'
 import manSitting from './images/man-sitting.png'
 import { connect } from 'react-redux';
 import { storeUserInfo } from '../actions/userActions'
-import { Navigate } from 'react-router'
+import { Link } from 'react-router-dom';
 
 
 
@@ -92,13 +93,17 @@ class SignIn extends Component {
     const usernameInputBorder = document.querySelector('.username-input-border');
     const emailInputBorder = document.querySelector('.email-input-border');
     const passwordInputBorder = document.querySelector('.password-input-border');
+    const SignInMsg = document.querySelector('.sign-msg');
+    const Form = document.querySelector('.form');
 
     const SignIn = (e) => {
       e?.preventDefault()
       if(usernamePattern?.test(this.state.user.username) && emailPattern?.test(this.state.user.email) && passwordPattern?.test(this.state.user.password)) {
         this.setState({...user.isLoggedIn = true})
         storeUserInfo(user);
-        
+        SignInMsg.classList.add('block');
+        SignInMsg.classList.remove('hidden');
+        Form.classList.add('opacity-30');
       }
       if(usernamePattern?.test(this.state.user.username) == false){
         usernameErrMsg?.classList.remove('hidden')
@@ -117,10 +122,23 @@ class SignIn extends Component {
       }
     }
 
+    // CLOSE SIGN IN MESSAGE
+
+    const closeSignInMsg = (e) => {
+      e?.preventDefault();
+      SignInMsg.classList.remove('block');
+      SignInMsg.classList.add('hidden');
+      Form.classList.remove('opacity-30');
+    }
+
     return (
       <div className='block w-full h-screen md:flex md:justify-between md:items-center'>
-        <div className='sign-msg block fixed m-auto center-h mt-40 md:mt-12 w-4/5 max-w-md h-64 border-2 border-slate-700 rounded-xl bg-neutral-200 z-50'>
-          <h1 className='relative flex w-auto text-2xl text-emerald-500 mx-auto mt-8 font-semibold'>You Signed In successfully</h1>
+        <div className='sign-msg hidden absolute align-middle mt-44 md:mt-12 w-4/5 max-w-xl h-64 border-2 border-slate-500 rounded-xl bg-neutral-200 z-20 center-h m-auto'>
+          <button className='block absolute w-7 h-7 right-3 top-2' onClick={(e) => closeSignInMsg(e)}>
+            <img src={Xicon} alt="" />
+          </button>
+          <h1 className='relative block ml-10 md:ml-36 mt-8 text-2xl text-emerald-500 font-semibold'>You Signed In successfully</h1>
+          <Link to="/home" className='flex relative border-2 border-red-500 w-3/5 px-5 py-2 justify-center mx-auto mt-20 bg-red-500 font-semibold text-xl text-slate-100 rounded-lg'>Go to Homepage</Link>
         </div>
         <img src={manSitting} alt="" className='w-1/3 max-w-sm hidden md:flex mt-16'/>
         <div className='form w-3/4 max-w-sm h-124 relative block border-2 border-slate-500 m-auto mt-24 rounded-3xl p-6 px-9 md:right-0'>
