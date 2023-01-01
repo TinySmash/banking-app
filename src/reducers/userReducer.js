@@ -14,9 +14,7 @@ export default function(state = initialState, action) {
                 user : state.user
             }
         case 'STORE_USER_INFO':
-            return {
-                ...state.user= action.payload
-            }
+                state.user = action.payload
         default :
             return state
     }
