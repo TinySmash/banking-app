@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { getUserInfo } from '../actions/userActions';
 import { Link } from 'react-router-dom';
+import ProgressBar from './progressBar';
 
 class Dashboard extends Component {
 
@@ -24,21 +25,24 @@ class Dashboard extends Component {
 
 
     return (
-      <div className='w-full h-screen bg-slate-100 p-4'>
+      <div className='w-full h-auto bg-slate-100 p-4'>
 
         { (user?.isLoggedIn == true) ? <div className='dashboard'>
-          <div className='w-full flex h-auto'>
+          <div className='w-full flex h-auto mt-14'>
 
-            <div className='mt-20 border-2 border-slate-500 relative flex w-9/2 md:w-3/5 h-56 md:h-72 mr-2 mx-auto rounded-md'>
-
+            <div className='border-2 border-slate-500 relative block text-center w-9/2 md:w-1/5 md:min-w-72 h-56 md:h-72 mr-2 mx-auto rounded-md'>
+              <h1 className='balance text-2xl font-medium w-auto mx-auto mt-9 md:mt-20 md:font-semibold'>Personal balance</h1>
+              <h1 className="balance text-3xl mt-6">0 $</h1>
             </div>
-            <div className='mt-20 border-2 border-slate-500 relative flex w-9/2 md:2/5 h-56 md:h-72 mx-auto rounded-md'>
+            <div className='border-2 border-slate-500 relative flex w-9/2 md:w-4/5 h-56 md:h-72 mx-auto rounded-md'>
 
             </div>
 
           </div>
-          <div>
-
+          <div className='mt-2 p-2 border-2 border-slate-500 relative flex w-full h-56 md:h-64 mx-auto rounded-md'>
+            <div className='w-28 h-28'>
+              <ProgressBar/>
+            </div>
           </div>
 
         </div> : 

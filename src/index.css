@@ -129,3 +129,17 @@ code {
 
 /*HERO SECTION*/
 
+
+
+/* DASHBOARD */
+
+/* .progress {
+  clip-path: circle(50%);
+} */
+
+.progress-container {
+  background: conic-gradient(
+    cyan 36deg,
+    blue 324deg
+  );
+}

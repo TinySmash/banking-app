@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx}",
   ],
   theme: {
+    minWidth: {
+      '72': '18rem'
+    },
     extend: {
       spacing: {
         '9/2': '45%',
