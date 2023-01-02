@@ -137,9 +137,10 @@ code {
   clip-path: circle(50%);
 } */
 
-.progress-container {
+/* .progress-container {
   background: conic-gradient(
-    cyan 36deg,
-    blue 324deg
+    rgb(255, 74, 74) 110deg,
+    black 1deg,
+    rgb(255, 177, 177) 1deg
   );
-}
+} */

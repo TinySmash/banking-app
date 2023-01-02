@@ -49,7 +49,7 @@ class Dashboard extends Component {
 
         // NOT LOGGED PAGE
 
-        <div className='w-full h-screen flex'>
+        <div className='w-full h-screen block mt-24'>
           <h1 className="text-xl text-red-500">You are not logged yet</h1>
           <Link to="log-in"> Login here </Link>
         </div>
