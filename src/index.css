@@ -133,14 +133,13 @@ code {
 
 /* DASHBOARD */
 
-/* .progress {
-  clip-path: circle(50%);
-} */
 
 /* .progress-container {
   background: conic-gradient(
-    rgb(255, 74, 74) 110deg,
-    black 1deg,
-    rgb(255, 177, 177) 1deg
+    rgb(255, 177, 177) 360deg
   );
 } */
+
+.progress-container {
+  background: rgb(255, 177, 177);
+}
