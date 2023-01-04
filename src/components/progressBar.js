@@ -2,30 +2,34 @@ import React, { Component } from 'react'
 
 class ProgressBar extends Component {
 
+  state = {
+    progressClass: `progress-container${this?.props?.count}`,
+    valueClass: `.progress-value${this?.props?.count}`,
+    progressEndValue: this?.props?.percentage,
+    count : this?.props?.count
+  }
+
 
   render() { 
 
-      let progressContainer = document.querySelector('.progress-container');
-      let valueContainer = document.querySelector('.progress-value');
+      const {progressEndValue, valueClass, progressClass, count} = this?.state ;
+      let progressContainer = document.querySelector(`.progress-container${count}`);
+      let valueContainer = document.querySelector(`.progress-value${count}`);
       const speed = 20;
       let progressValue = 0;
-      //let progressEndValue = 70;
-
-
       function updateElements() {
-        valueContainer = document.querySelector('.progress-value');
-        progressContainer = document.querySelector('.progress-container');
+        valueContainer = document.querySelector(valueClass);
+        progressContainer = document.querySelector(progressClass);
       }
 
       const createProgress = setInterval(() => {
         updateElements();
-        valueContainer.innerText = `${progressValue} %`
-        progressContainer.style.background = `conic-gradient(
+        document.querySelector(`.progress-value${count}`).innerText = `${progressValue} %`
+        document.querySelector(`.progress-container${count}`).style.background = `conic-gradient(
           rgb(239 68 68) ${progressValue*3.6}deg,
           black 1deg,
           rgb(255, 177, 177)  1deg
           )`
-          
           if (progressValue == this.props.percentage) {
             clearInterval(createProgress);
           }
@@ -33,9 +37,9 @@ class ProgressBar extends Component {
         }, speed) 
 
     return (
-      <div className='progress-container w-full h-full rounded-full flex justify-center items-center'>
+      <div className={`progress-container${count} w-full h-full rounded-full flex justify-center items-center`}>
         <div className="w-3/4 h-3/4 rounded-full bg-slate-100 flex justify-center items-center">
-            <h1 className='progress-value' >0 %</h1>
+            <h1 className={`progress-value${count}`} >0 %</h1>
         </div>
       </div>
     ) 
