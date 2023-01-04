@@ -55,7 +55,7 @@ function Navbar(props) {
         <button className='flex md:hidden w-10 h-10 border-2 border-slate-100 border-radius-5 rounded items-center justify-center' onClick={openMenu}>
             <div className="burger-menu w-8 h-1 before:w-8 before:h-1 before:border-slate-100 before:rounded-md after:rounded-md after:border-slate-100 after:w-8 after:h-1 border-2 border-slate-100 rounded-md"></div>
         </button>
-        <div className='burger-options-menu hidden md:hidden absolute right-0 sm:right-7 top-16 w-28 h-32 border-2 border-red-500 rounded-b-md bg-red-200'>
+        <div className='burger-options-menu hidden md:hidden absolute right-0 sm:right-7 top-16 w-28 h-32 border-2 border-red-500 rounded-b-md bg-red-500'>
           <ul className='menu-list menu-list-closed'>
             <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-0'><a href="" onClick={() => navigate("/")}>Home</a></li>
             <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2'><a href="" onClick={() => navigate(`/${userState?.[1]}`)}>Dashboard</a></li>

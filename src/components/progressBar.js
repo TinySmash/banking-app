@@ -9,7 +9,7 @@ class ProgressBar extends Component {
       let valueContainer = document.querySelector('.progress-value');
       const speed = 20;
       let progressValue = 0;
-      let progressEndValue = 70;
+      //let progressEndValue = 70;
 
       function updateElements() {
         valueContainer = document.querySelector('.progress-value');
@@ -17,19 +17,19 @@ class ProgressBar extends Component {
       }
 
       const createProgress = setInterval(() => {
-        progressValue++;
         updateElements();
         valueContainer.innerText = `${progressValue} %`
         progressContainer.style.background = `conic-gradient(
-             rgb(239 68 68) ${progressValue*3.6}deg,
-             black 1deg,
-             rgb(251, 202, 202)  1deg
-           )`
-        
-        if (progressValue == progressEndValue) {
+          rgb(239 68 68) ${progressValue*3.6}deg,
+          black 1deg,
+          rgb(251, 202, 202)  1deg
+          )`
+          
+          if (progressValue == this.props.percentage) {
             clearInterval(createProgress);
-        }
-    }, speed) 
+          }
+          progressValue++;
+        }, speed) 
 
     return (
       <div className='progress-container w-full h-full rounded-full flex justify-center items-center'>

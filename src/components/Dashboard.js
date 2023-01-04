@@ -40,8 +40,8 @@ class Dashboard extends Component {
 
           </div>
           <div className='mt-2 p-2 border-2 border-slate-500 relative flex w-full h-56 md:h-64 mx-auto rounded-md'>
-            <div className='w-28 h-28'>
-              <ProgressBar/>
+            <div className='w-28 h-28 md:w-36 md:h-36'>
+              <ProgressBar percentage={99} />
             </div>
           </div>
 
