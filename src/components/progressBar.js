@@ -11,6 +11,7 @@ class ProgressBar extends Component {
       let progressValue = 0;
       //let progressEndValue = 70;
 
+
       function updateElements() {
         valueContainer = document.querySelector('.progress-value');
         progressContainer = document.querySelector('.progress-container');
@@ -22,7 +23,7 @@ class ProgressBar extends Component {
         progressContainer.style.background = `conic-gradient(
           rgb(239 68 68) ${progressValue*3.6}deg,
           black 1deg,
-          rgb(251, 202, 202)  1deg
+          rgb(255, 177, 177)  1deg
           )`
           
           if (progressValue == this.props.percentage) {
