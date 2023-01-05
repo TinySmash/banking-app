@@ -1,6 +1,6 @@
 const initialState = {
-    user : {
-        isLoggedIn : false,
+    users : {
+        isLoggedIn: false,
         username : '',
         email : '',
         password : ''

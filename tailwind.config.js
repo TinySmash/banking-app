@@ -5,7 +5,8 @@ module.exports = {
   ],
   theme: {
     minWidth: {
-      '72': '18rem'
+      '72': '18rem',
+      '64': '16rem'
     },
     extend: {
       spacing: {

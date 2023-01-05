@@ -34,20 +34,28 @@ class Dashboard extends Component {
               <h1 className='balance text-2xl font-medium w-auto mx-auto mt-9 md:mt-20 md:font-semibold'>Personal balance</h1>
               <h1 className="balance text-3xl mt-6">0 $</h1>
             </div>
-            <div className='border-2 border-slate-500 relative flex w-9/2 md:w-4/5 h-56 md:h-72 mx-auto rounded-md'>
+            <div className='border-2 border-slate-500 relative flex justify-start items-start w-9/2 md:w-4/5 h-56 md:h-72 mx-auto rounded-md p-1'>
+              <div className='all-acc block mx-auto h-full w-full border-2 max-w-[16rem] p-2'>
+                <label className='text-lg sm:text-xl border-b-2 border-slate-500 cursor-pointer'>Transactions history</label>
+                <ul className='list-none'>
 
+                </ul>
+              </div>
             </div>
 
           </div>
-          <div className='mt-2 p-2 border-2 border-slate-500 relative flex justify-between w-full h-56 md:h-64 mx-auto rounded-md'>
-            <div className='w-28 h-28 md:w-36 md:h-36'>
+          <div className='mt-2 p-2 border-2 border-slate-500 relative flex justify-evenly w-full h-56 md:h-64 mx-auto rounded-md'>
+            <div className='w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36'>
               <ProgressBar percentage={15} count={1}/>
             </div>
-            <div className='w-28 h-28 md:w-36 md:h-36'>
+            <div className='w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36'>
               <ProgressBar percentage={65} count={2}/>
             </div>
-            <div className='w-28 h-28 md:w-36 md:h-36'>
+            <div className='hidden sm:flex sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36'>
               <ProgressBar percentage={85} count={3}/>
+            </div>
+            <div className='hidden md:flex md:w-32 md:h-32 lg:w-36 lg:h-36'>
+              <ProgressBar percentage={25} count={4}/>
             </div>
           </div>
 

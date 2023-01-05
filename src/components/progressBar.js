@@ -30,7 +30,7 @@ class ProgressBar extends Component {
           black 1deg,
           rgb(255, 177, 177)  1deg
           )`
-          if (progressValue == this.props.percentage) {
+          if (progressValue == progressEndValue) {
             clearInterval(createProgress);
           }
           progressValue++;
