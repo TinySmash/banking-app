@@ -34,22 +34,22 @@ function Navbar(props) {
 
   useEffect(() => {
     getUserInfo();
-    if(props?.user?.isLoggedIn == true) {
+    if(props?.user?.loginInfo?.isLoggedIn == true) {
       setUserState(['profile','dashboard']);
     } else {
       setUserState(['sign-in','sign-in']);
     }
-  },[getUserInfo])
+  },[props.user.loginInfo])
 
   return (
     <header className='flex fixed h-12 w-full p-8 sm:pr-16 bg-red-500 justify-between items-center z-50'>
         <h1 className="title text-3xl font-bold text-slate-100">MonoCash</h1>
         <nav className='hidden md:flex w-5/12 '>
             <ul className='w-full flex justify-between'>
-                <li className='no-underline text-slate-100 hover:text-slate-400'><a href="" onClick={() => navigate("/")}>Home</a></li>
-                <li className='no-underline text-slate-100 hover:text-slate-400'><a href="" onClick={() => navigate(`/${userState?.[1]}`)}>Dashboard</a></li>
-                <li className='no-underline text-slate-100 hover:text-slate-400'><a href="" onClick={() => navigate(`/${userState?.[0]}`)}>Profile</a></li>
-                <li className='no-underline text-slate-100 hover:text-slate-400'><a href="" onClick={() => navigate("/wallet")}>Wallet</a></li>
+                <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate("/")}>Home</h1></li>
+                <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[1]}`)}>Dashboard</h1></li>
+                <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[0]}`)}>Profile</h1></li>
+                <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate("/wallet")}>Wallet</h1></li>
             </ul>
         </nav>
         <button className='flex md:hidden w-10 h-10 border-2 border-slate-100 border-radius-5 rounded items-center justify-center' onClick={openMenu}>
@@ -57,10 +57,10 @@ function Navbar(props) {
         </button>
         <div className='burger-options-menu hidden md:hidden absolute right-0 sm:right-7 top-16 w-28 h-32 border-2 border-red-500 rounded-b-md bg-red-500'>
           <ul className='menu-list menu-list-closed'>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-0'><a href="" onClick={() => navigate("/")}>Home</a></li>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2'><a href="" onClick={() => navigate(`/${userState?.[1]}`)}>Dashboard</a></li>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2'><a href="" onClick={() => navigate(`/${userState?.[0]}`)}>Profile</a></li>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2 '><a href="" onClick={() => navigate("/wallet")}>Wallet</a></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-0 cursor-pointer'><h1 href="" onClick={() => navigate("/")}>Home</h1></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[1]}`)}>Dashboard</h1></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[0]}`)}>Profile</h1></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2 cursor-pointer'><h1 href="" onClick={() => navigate("/wallet")}>Wallet</h1></li>
           </ul>
         </div>
     </header>

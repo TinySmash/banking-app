@@ -5,9 +5,9 @@ export const getUserInfo = () => {
     }
 }
 
-export const storeUserInfo = (user) => {
+export const storeUserInfo = (userLoginInfo) => {
     return {
         type: 'STORE_USER_INFO',
-        payload: user
+        payload: userLoginInfo
     }
 }

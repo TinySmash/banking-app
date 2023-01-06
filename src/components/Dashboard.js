@@ -27,7 +27,7 @@ class Dashboard extends Component {
     return (
       <div className='w-full h-auto bg-slate-100 p-4'>
 
-        { (user?.isLoggedIn == true) ? <div className='dashboard'>
+        { (user?.loginInfo?.isLoggedIn == true) ? <div className='dashboard'>
           <div className='w-full flex h-auto mt-14'>
 
             <div className='border-2 border-slate-500 relative block text-center w-9/2 md:w-1/5 md:min-w-72 h-56 md:h-72 mr-2 mx-auto rounded-md'>
@@ -35,7 +35,7 @@ class Dashboard extends Component {
               <h1 className="balance text-3xl mt-6">0 $</h1>
             </div>
             <div className='border-2 border-slate-500 relative flex justify-start items-start w-9/2 md:w-4/5 h-56 md:h-72 mx-auto rounded-md p-1'>
-              <div className='all-acc block mx-auto h-full w-full border-2 max-w-[16rem] p-2'>
+              <div className='all-acc block h-full w-full max-w-[16rem] p-2'>
                 <label className='text-lg sm:text-xl border-b-2 border-slate-500 cursor-pointer'>Transactions history</label>
                 <ul className='list-none'>
 

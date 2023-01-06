@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 class SignIn extends Component {
 
   state = {
-    user : {
+    userLoginInfo : {
       isLoggedIn: false,
       username : '',
       email : '',
@@ -56,7 +56,7 @@ class SignIn extends Component {
     const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const passwordPattern = /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
     const usernamePattern = /^[a-zA-Z0-9_-]{3,16}$/;
-    const {user} = this.state ;
+    const {userLoginInfo} = this.state ;
     const { storeUserInfo } = this.props;
 
 
@@ -73,13 +73,13 @@ class SignIn extends Component {
       })
       switch(inputField){
         case 'username':
-          this.setState({...user.username = e.target.value})
+          this.setState({...userLoginInfo.username = e.target.value})
           break
           case 'email':
-            this.setState({...user.email = e.target.value})
+            this.setState({...userLoginInfo.email = e.target.value})
             break
             case 'password':
-              this.setState({...user.password = e.target.value})
+              this.setState({...userLoginInfo.password = e.target.value})
               break
               default :
               return null
@@ -98,24 +98,24 @@ class SignIn extends Component {
 
     const SignIn = (e) => {
       e?.preventDefault()
-      if(usernamePattern?.test(this.state.user.username) && emailPattern?.test(this.state.user.email) && passwordPattern?.test(this.state.user.password)) {
-        this.setState({...user.isLoggedIn = true})
-        storeUserInfo(user);
+      if(usernamePattern?.test(this.state.userLoginInfo.username) && emailPattern?.test(this.state.userLoginInfo.email) && passwordPattern?.test(this.state.userLoginInfo.password)) {
+        this.setState({...userLoginInfo.isLoggedIn = true})
+        storeUserInfo(userLoginInfo);
         SignInMsg.classList.add('block');
         SignInMsg.classList.remove('hidden');
         Form.classList.add('opacity-30');
       }
-      if(usernamePattern?.test(this.state.user.username) == false){
+      if(usernamePattern?.test(userLoginInfo.username) == false){
         usernameErrMsg?.classList.remove('hidden')
         usernameInputBorder?.classList.remove('border-slate-500');
         usernameInputBorder?.classList.add('border-red-600');
       }
-      if(emailPattern?.test(this.state.user.email) == false){
+      if(emailPattern?.test(userLoginInfo.email) == false){
         emailErrMsg?.classList.remove('hidden')
         emailInputBorder?.classList.remove('border-slate-500');
         emailInputBorder?.classList.add('border-red-600');
       }
-      if(passwordPattern?.test(this.state.user.password) == false){
+      if(passwordPattern?.test(userLoginInfo.password) == false){
         passwordErrMsg?.classList.remove('hidden')
         passwordInputBorder?.classList.remove('border-slate-500');
         passwordInputBorder?.classList.add('border-red-600');
@@ -191,7 +191,7 @@ class SignIn extends Component {
 
 const mapUserStateToProps = (state) => {
   return {
-    user: state.user.user || [],
+    user: state.user.user.loginInfo || [],
   }
 }
 

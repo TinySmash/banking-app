@@ -1,9 +1,22 @@
 const initialState = {
-    users : {
-        isLoggedIn: false,
-        username : '',
-        email : '',
-        password : ''
+    user : {
+        loginInfo: {
+            isLoggedIn: false,
+            username : '',
+            email : '',
+            password : '',
+        },
+        BankAccount: {
+            balance: {
+                USD: 0
+            },
+            transactions: [
+
+            ],
+            onHold: {
+                
+            }
+        }
     }
 }
 
@@ -14,7 +27,7 @@ export default function(state = initialState, action) {
                 user : state.user
             }
         case 'STORE_USER_INFO':
-                state.user = action.payload
+                state.user.loginInfo = action.payload
         default :
             return state
     }
