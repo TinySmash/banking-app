@@ -32,14 +32,16 @@ function Navbar(props) {
   const { getUserInfo } = props;
   const [userState, setUserState] = useState(null);
 
+  
   useEffect(() => {
     getUserInfo();
-    if(props?.user?.loginInfo?.isLoggedIn == true) {
-      setUserState(['profile','dashboard']);
+    console.log(props?.userInfo);
+    if(props?.userInfo?.isLoggedIn == true) {
+      setUserState(['profile','dashboard','wallet']);
     } else {
-      setUserState(['sign-in','sign-in']);
+      setUserState(['sign-in','sign-in','sign-in']);
     }
-  },[props.user.loginInfo])
+  },[props?.userInfo])
 
   return (
     <header className='flex fixed h-12 w-full p-8 sm:pr-16 bg-red-500 justify-between items-center z-50'>
@@ -49,7 +51,7 @@ function Navbar(props) {
                 <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate("/")}>Home</h1></li>
                 <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[1]}`)}>Dashboard</h1></li>
                 <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[0]}`)}>Profile</h1></li>
-                <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate("/wallet")}>Wallet</h1></li>
+                <li className='no-underline text-slate-100 hover:text-slate-400 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[2]}`)}>Wallet</h1></li>
             </ul>
         </nav>
         <button className='flex md:hidden w-10 h-10 border-2 border-slate-100 border-radius-5 rounded items-center justify-center' onClick={openMenu}>
@@ -60,17 +62,17 @@ function Navbar(props) {
             <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-0 cursor-pointer'><h1 href="" onClick={() => navigate("/")}>Home</h1></li>
             <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[1]}`)}>Dashboard</h1></li>
             <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[0]}`)}>Profile</h1></li>
-            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2 cursor-pointer'><h1 href="" onClick={() => navigate("/wallet")}>Wallet</h1></li>
+            <li className='menu-options no-underline text-slate-100 hover:text-slate-400 ml-5 mt-2 cursor-pointer'><h1 href="" onClick={() => navigate(`/${userState?.[2]}`)}>Wallet</h1></li>
           </ul>
         </div>
     </header>
   )
 }
 
-const mapUserStateToProps = (state) => {
+const mapUserInfoToProps = (state) => {
   return {
-    user: state.user.user
+    userInfo : state.user.loginInfo
   }
 }
 
-export default connect(mapUserStateToProps, {getUserInfo})(Navbar)
+export default connect(mapUserInfoToProps, {getUserInfo})(Navbar)

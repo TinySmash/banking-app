@@ -1,21 +1,18 @@
 const initialState = {
-    user : {
-        loginInfo: {
-            isLoggedIn: false,
-            username : '',
-            email : '',
-            password : '',
+    loginInfo: {
+        isLoggedIn: false,
+        username : '',
+        email : '',
+        password : '',
+    },
+    BankAccount: {
+        balance: {
+            USD: 0
         },
-        BankAccount: {
-            balance: {
-                USD: 0
-            },
-            transactions: [
-
-            ],
-            onHold: {
-                
-            }
+        transactions: [
+        ],
+        onHold: {
+            
         }
     }
 }
@@ -24,10 +21,10 @@ export default function(state = initialState, action) {
     switch(action.type) {
         case 'GET_USER_INFO':
             return {
-                user : state.user
+                ...state
             }
         case 'STORE_USER_INFO':
-                state.user.loginInfo = action.payload
+                state.loginInfo = action.payload
         default :
             return state
     }

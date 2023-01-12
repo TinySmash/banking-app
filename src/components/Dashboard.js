@@ -23,7 +23,6 @@ class Dashboard extends Component {
 
     const { user } = this.state;
 
-
     return (
       <div className='w-full h-auto bg-slate-100 p-4'>
 
@@ -35,11 +34,24 @@ class Dashboard extends Component {
               <h1 className="balance text-3xl mt-6">0 $</h1>
             </div>
             <div className='border-2 border-slate-500 relative flex justify-start items-start w-9/2 md:w-4/5 h-56 md:h-72 mx-auto rounded-md p-1'>
-              <div className='all-acc block h-full w-full max-w-[16rem] p-2'>
+              <div className='all-acc block h-full w-full md:w-1/2 p-2'>
                 <label className='text-lg sm:text-xl border-b-2 border-slate-500 cursor-pointer'>Transactions history</label>
-                <ul className='list-none'>
+                
+                  {user?.BankAccount?.transactions?.lenght !== 0 ?
+                  <ul className='list-none'>
+                    {user?.BankAccount?.transactions?.map(e => {
+                      return <li>Transaction {user?.BankAccount?.transactions?.indexOf(e)}</li>
+                    })}
+                  </ul>
+                  :
+                  <h1 className='flex text-3xl'>--</h1>
+                  }
+                  
+              </div>
 
-                </ul>
+              <div className='all-acc hidden md:block h-full w-1/2 p-2'>
+                <label className='text-lg sm:text-xl border-b-2 border-slate-500 cursor-pointer'>Onhold currencies</label>
+                
               </div>
             </div>
 
@@ -75,7 +87,7 @@ class Dashboard extends Component {
 
 const mapUserStateToProps = (state) => {
     return {
-        currentUser : state.user.user
+        currentUser : state.user
     }
 }
 
