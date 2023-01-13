@@ -10,6 +10,7 @@ const initialState = {
             USD: 0
         },
         transactions: [
+    
         ],
         onHold: {
             

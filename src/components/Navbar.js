@@ -35,7 +35,6 @@ function Navbar(props) {
   
   useEffect(() => {
     getUserInfo();
-    console.log(props?.userInfo);
     if(props?.userInfo?.isLoggedIn == true) {
       setUserState(['profile','dashboard','wallet']);
     } else {

@@ -34,22 +34,22 @@ class Dashboard extends Component {
               <h1 className="balance text-3xl mt-6">0 $</h1>
             </div>
             <div className='border-2 border-slate-500 relative flex justify-start items-start w-9/2 md:w-4/5 h-56 md:h-72 mx-auto rounded-md p-1'>
-              <div className='all-acc block h-full w-full md:w-1/2 p-2'>
-                <label className='text-lg sm:text-xl border-b-2 border-slate-500 cursor-pointer'>Transactions history</label>
+              <div className='all-acc block relative h-full w-full md:w-1/3 p-2'>
+                <label className='text-lg absolute sm:text-xl border-b-2 border-slate-500 cursor-pointer'>Transactions history</label>
                 
-                  {user?.BankAccount?.transactions?.lenght !== 0 ?
-                  <ul className='list-none'>
-                    {user?.BankAccount?.transactions?.map(e => {
-                      return <li>Transaction {user?.BankAccount?.transactions?.indexOf(e)}</li>
-                    })}
-                  </ul>
+                  {(user?.BankAccount?.transactions?.length == 0) ?
+                    <h1 className='flex text-3xl mx-auto w-8 mt-5'>--</h1>
                   :
-                  <h1 className='flex text-3xl'>--</h1>
+                    <ul className='list-none'>
+                      {user?.BankAccount?.transactions?.map(e => {
+                        return <li>Transaction {user?.BankAccount?.transactions?.indexOf(e)}</li>
+                      })}
+                    </ul>
                   }
                   
               </div>
 
-              <div className='all-acc hidden md:block h-full w-1/2 p-2'>
+              <div className='all-acc hidden relative md:block h-full w-1/3 p-2'>
                 <label className='text-lg sm:text-xl border-b-2 border-slate-500 cursor-pointer'>Onhold currencies</label>
                 
               </div>
@@ -57,8 +57,9 @@ class Dashboard extends Component {
 
           </div>
           <div className='mt-2 p-2 border-2 border-slate-500 relative flex justify-evenly w-full h-56 md:h-64 mx-auto rounded-md'>
-            <div className='w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36'>
+            <div className='block relative w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36'>
               <ProgressBar percentage={15} count={1}/>
+              <h1 className='absolute text-md md:text-lg text-bold bottom-[-45px] left-0 right-0 mx-auto'>value progress</h1>
             </div>
             <div className='w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36'>
               <ProgressBar percentage={65} count={2}/>
