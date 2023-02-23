@@ -24,15 +24,15 @@ class ProgressBar extends Component {
 
       const createProgress = setInterval(() => {
         updateElements();
+        if (progressValue == progressEndValue || document.querySelector(`.progress-value${count}`) == undefined || document.querySelector(`.progress-container${count}`) == undefined) {
+          clearInterval(createProgress);
+        }
         document.querySelector(`.progress-value${count}`).innerText = `${progressValue} %`
         document.querySelector(`.progress-container${count}`).style.background = `conic-gradient(
           rgb(239 68 68) ${progressValue*3.6}deg,
           black 1deg,
           rgb(255, 177, 177)  1deg
           )`
-          if (progressValue == progressEndValue) {
-            clearInterval(createProgress);
-          }
           progressValue++;
         }, speed) 
 
