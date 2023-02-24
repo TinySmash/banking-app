@@ -133,12 +133,12 @@ class SignIn extends Component {
 
     return (
       <div className='block w-full h-screen md:flex md:justify-between md:items-center'>
-        <div className='sign-msg hidden absolute align-middle mt-44 md:mt-12 w-4/5 max-w-xl h-64 border-2 border-slate-500 rounded-xl bg-neutral-200 z-20 center-h m-auto'>
+        <div className='sign-msg hidden absolute align-middle mt-44 md:mt-12 w-4/5 max-w-xl h-64 border-2 border-slate-500 rounded-xl bg-neutral-200 z-20 center-h m-auto text-center'>
           <button className='block absolute w-7 h-7 right-3 top-2' onClick={(e) => closeSignInMsg(e)}>
             <img src={Xicon} alt="" />
           </button>
-          <h1 className='relative block ml-10 md:ml-36 mt-8 text-2xl text-emerald-500 font-semibold'>You Signed In successfully</h1>
-          <Link to="/dashboard" className='flex relative border-2 border-red-500 w-3/5 px-5 py-2 justify-center mx-auto mt-20 bg-red-500 font-semibold text-xl text-slate-100 rounded-lg'>Go to Dashboard</Link>
+          <h1 className='relative block mt-8 text-2xl text-emerald-500 font-semibold text-center'>You Signed In successfully</h1>
+          <Link to="/dashboard" className='flex relative border-2 border-red-500 w-3/5 px-5 py-2 justify-center mx-auto mt-20 bg-red-500 font-semibold text-xl text-slate-100 rounded-lg text-center'>Submit and Go to Dashboard</Link>
         </div>
         <img src={manSitting} alt="" className='w-1/3 max-w-sm hidden md:flex mt-16'/>
         <div className='form w-3/4 max-w-sm h-124 relative block border-2 border-slate-500 m-auto mt-24 rounded-3xl p-6 px-9 md:right-0'>
