@@ -143,3 +143,12 @@ code {
 .progress-container {
   background: rgb(255, 177, 177);
 }
+
+.insetShadow {
+  box-shadow: inset 1px 0.5px 10px black,
+  -1.5px 0px 12px;
+}
+
+.insetShadow2 {
+  box-shadow: -0.5px 0.5px 10px;
+}

@@ -177,7 +177,7 @@ class SignIn extends Component {
             </span>
           </div>
 
-          <button className='border-2 border-red-500 w-4/5 ml-tenth mt-2 rounded-lg bg-red-500 text-slate-100 font-bold py-1' onClick={(e) => SignIn(e)}>Sign In</button>
+          <button className='border-2 border-red-500 w-4/5 ml-tenth mt-2 rounded-lg bg-red-500 text-slate-100 font-bold py-1' onClick={(e) => SignIn(e)} type="submit">Sign In</button>
           <button className='flex relative w-full justify-between border-2 border-slate-500 rounded-xl p-0 pr-1 items-center mt-4'>
                 <h3 className='px-4 font-semibold'>Login with Google</h3>
                   <img src={Google} alt="" className='w-8 h-8 mr-4 '/>

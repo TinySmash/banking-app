@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 
 class ProgressBar extends Component {
 
@@ -6,16 +6,30 @@ class ProgressBar extends Component {
     progressClass: `progress-container${this?.props?.count}`,
     valueClass: `.progress-value${this?.props?.count}`,
     progressEndValue: this?.props?.percentage,
-    count : this?.props?.count
+    count : this?.props?.count,
+    sign: ""
+  }
+
+  componentDidMount() {
+    if (this?.props?.sign != undefined){
+      this.setState({
+        sign : this?.props?.sign
+      })
+    } else {
+      this.setState({
+        sign : ""
+      })
+    }
   }
 
 
   render() { 
+      
 
-      const {progressEndValue, valueClass, progressClass, count} = this?.state ;
+      const {progressEndValue, valueClass, progressClass, count, sign} = this?.state ;
       let progressContainer = document.querySelector(`.progress-container${count}`);
       let valueContainer = document.querySelector(`.progress-value${count}`);
-      const speed = 20;
+      const speed = 16;
       let progressValue = 0;
       function updateElements() {
         valueContainer = document.querySelector(valueClass);
@@ -23,23 +37,33 @@ class ProgressBar extends Component {
       }
 
       const createProgress = setInterval(() => {
-        updateElements();
         if (progressValue == progressEndValue || document.querySelector(`.progress-value${count}`) == undefined || document.querySelector(`.progress-container${count}`) == undefined) {
           clearInterval(createProgress);
         }
-        document.querySelector(`.progress-value${count}`).innerText = `${progressValue} %`
+        updateElements();
+        document.querySelector(`.progress-value${count}`).innerText = `${sign}${progressValue} %`
         document.querySelector(`.progress-container${count}`).style.background = `conic-gradient(
           rgb(239 68 68) ${progressValue*3.6}deg,
           black 1deg,
           rgb(255, 177, 177)  1deg
           )`
-          progressValue++;
+          if((progressEndValue - progressValue) >= 1) {
+            progressValue++;
+          }
+          else if ((progressEndValue - progressValue) >= 0.1) {
+            progressValue = progressValue + 0.1;
+            progressValue = Number(progressValue.toFixed(1));
+          }
+          else if ((progressEndValue - progressValue) < 0.1) {
+            progressValue = progressValue + 0.01;
+            progressValue = Number(progressValue.toFixed(2));
+          } 
         }, speed) 
 
     return (
-      <div className={`progress-container${count} w-full h-full rounded-full flex justify-center items-center`}>
-        <div className="w-3/4 h-3/4 rounded-full bg-slate-100 flex justify-center items-center">
-            <h1 className={`progress-value${count}`} >0 %</h1>
+      <div className={`progress-container${count} w-full h-full rounded-full flex justify-center items-center insetShadow2`}>
+        <div className=" insetShadow  w-[70%] h-[70%] rounded-full bg-slate-100 flex justify-center items-center">
+            <h1 className={`progress-value${count} font-semibold md:font-bold text-lg md:text-xl`} >0 %</h1>
         </div>
       </div>
     ) 
